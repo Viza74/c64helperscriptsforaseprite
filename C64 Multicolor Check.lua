@@ -311,7 +311,7 @@ local function findBGColor(app, dlgdata)
 
   local minErrors = 40*25+1
   local minIdx = nil
-  for i = 1,16 do
+  for i = 0,16 do
     local numErrors = mapErrors(app, dlgdata, i, false)
     if numErrors<minErrors then
       minErrors = numErrors
