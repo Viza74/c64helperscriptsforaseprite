@@ -5,12 +5,12 @@
 
 >You need to run at least Aseprite v1.2.10 (beta at the time of writing) with lua scripting support.
 
-Click on `File/Scripts/Open script folder` and copy the files from this repo there. Restart Aseprite, and the new commands should show up in the `File/Scrits` menu.
+Click on `File/Scripts/Open script folder` and copy the files from this repo there (well actually the lua and prg files are enough). Restart Aseprite, and the new commands should show up in the `File/Scripts` menu.
 
 > Tip: You can assign keyboard shortcuts to scripts in the `Edit/Keyboard shorcuts` menu
 
 ## Getting started
-The multicolor bitmap mode on the C64 is 160x200 (double width) resolution image, where each "attribute cell" is 4x8 pixels, and can contain maximum of four colors: 3 can be unique in every cell, and one common color (the "background color").
+The multicolor bitmap mode on the C64 is 160x200 (with double wide pixels) resolution image, where each "attribute cell" is 4x8 pixels, and can contain maximum of four colors: 3 can be unique in every cell, and one common color (the "background color").
 
 The simplest way to start is to duplicate the included aseprite image, and use that, it is set up the way as the scripts expect it.
 
@@ -21,7 +21,7 @@ In the "New Sprite" dialog, set:
 * Color mode: Indexed
 * Open the `Advanced options` section, set the `Pixel aspect ratio` to `Double-wide Pixels 2:1`
 * Palette: `Presets` (above the palette), and load the C64 palette from there.
-* The scripts work with a couple of extra colors for the markings outside of the 16 color C64 palette. Add the next colors:
+* The scripts work with a couple of extra colors for the markings outside of the 16 color C64 palette. Add the following colors:
   * index 16 (purple) - not actually used by the scripts, I use it as a transparent color.
   * index 17 (bright red) - this will mark cells with errors
   * index 18 (orange) - cells with one more possible color
@@ -42,7 +42,7 @@ Brute force search for the color which produces the least errors in the image.
 The currently used background color. The previous option will find the best one, but can be set manually.
 ### Check
 Check the image for errors.
-It will create a new layer called "Error map", and fills every attribute cells (4x8 pixels) with the color index 18 (red if you use the included starting image).
+It will create a new layer called "Error map", and fills every attribute cells with the color index 18 (red if you use the included starter image) which contains more than 3 colors + bg color.
 ### Toggle error map
 Handy shortcut to toggle the visibility of the error map.
 ### OppCheck
@@ -57,11 +57,11 @@ Toggles the visibility of the opportunity map on and off.
 ![](exportkoala_sshot.png)
 
 ### Save as
-The filename to save the koala/prg file, without extension. By default it is the same as the currently open asperite file name, but you can be modified by hand.
+The filename to save the koala/prg file, without extension. By default it is the same as the currently open asperite file name, but you can be modify by hand.
 Unfortunately it seems that there are no file picker accessible from the scripts yet. :(
 ### BG Color
-Which color to use as the background color.
+Which color index to use as the background color?
 ### Koala/PRG radio buttons
-Choose the file format.
-* Koala will export the image as pure data .kla file, starting at the memory adress 0x6000
-* PRG will use the file "koalaview.prg" in the scripts directory, and appends the koala binar to that. The program is runnable on a C64, and simply displays the appended koala image.
+Choose the file format:
+* Koala will export the image as pure data .kla file, starting at the memory address 0x6000
+* PRG will use the file "koalaview.prg" in the scripts directory, and appends the koala binary to that. The program is runnable on a C64, and simply displays the appended koala image.
