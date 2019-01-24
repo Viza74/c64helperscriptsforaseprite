@@ -219,7 +219,7 @@ local function mapOpportunities(app, dlgdata)
           end
 
           local cellCount = setCount(cellCols)
-          if cellCount < 3 or (cellCount == 3 and not setContains(cellCols, dlgdata.bgCol.index)) then
+          if cellCount <= 3 or (cellCount == 3 and not setContains(cellCols, dlgdata.bgCol.index)) then
             local markCol = 20
             if cellCount == 2 then
               markCol = 19
