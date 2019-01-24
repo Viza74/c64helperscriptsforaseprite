@@ -64,6 +64,14 @@ if string.len(data.loadaddress)~=4 or not string.match( data.loadaddress , "[012
   return
 end
 
+-- turn off debug layers before grabbing the current image
+for _, layer in ipairs(spr.layers) do
+  if layer.name == "Errormap" or layer.name == "Oppmap" then
+    layer.isVisible=false
+  end
+end
+app.refresh()
+
 -- Get image from the active frame of the active sprite
 local img = Image(spr.spec)
 img:drawSprite(spr, app.activeFrame)
