@@ -47,6 +47,7 @@ local newfilename = string.gsub(spr.filename, ".aseprite", "")
 local d =
   Dialog("Export C64 Koala format")
   :entry {id = "fname", label = "Save as:", text = newfilename, focus = true}
+  :entry {id = "loadaddress", label = "Load at: $", text = "6000"}
   :color {id = "bgCol", label = "BG color:", color = Color(0)}
   :radio {id = "koala", text = "Koala"}:radio {id = "prg", text = "PRG", selected = true}
   :button {id = "ok", text = "&OK", focus = true}
@@ -54,6 +55,12 @@ local d =
 
 local data = d.data
 if not data.ok then
+  return
+end
+
+-- Validate load address
+if string.len(data.loadaddress)~=4 or not string.match( data.loadaddress , "[0123456789aAbBcCdDeEfF]" ) then
+  app.alert("Wrongly formatted load address: should be 4 character long hexadecimal number.")
   return
 end
 
@@ -150,8 +157,18 @@ if data.prg == true then
   out:write(viewerbin)
 end
 
--- Koala start at 0x6000
-out:write(string.char(00, 0x60))
+-- Write load address
+if data.prg == true then
+  -- ignore the dialog setting, the viewer expects the koala at 0x6000
+  out:write(string.char(00, 0x60))
+else
+  -- Use the address from the dialog
+  local secondhalf = tonumber(string.sub(data.loadaddress, 3,4),16)
+  local firsthalf = tonumber(string.sub(data.loadaddress, 1,2),16)
+  print(secondhalf,firsthalf)
+  out:write(string.char(secondhalf, firsthalf))
+  -- out:write(string.char(00, 0x60))
+end
 out:write(string.char(table.unpack(bitmap)))
 out:write(string.char(table.unpack(screenRAM)))
 out:write(string.char(table.unpack(colorRAM)))
@@ -164,5 +181,5 @@ out:close()
 
 -- if data.prg == true then
 --   local crunchedfname = string.gsub(outfname, "[.]", ".c.")
---   os.execute("exomizer sfx sys "..outfname.." -o "..crunchedfname)
+--   local term, status, num = os.execute("exomizer sfx sys "..outfname.." -o "..crunchedfname)
 -- end
