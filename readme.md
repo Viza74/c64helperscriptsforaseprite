@@ -59,6 +59,8 @@ Toggles the visibility of the opportunity map on and off.
 ### Save as
 The filename to save the koala/prg file, without extension. By default it is the same as the currently open asperite file name, but you can modify it by hand.
 Unfortunately it seems that there are no file picker accessible from the scripts yet. :(
+### Load at $6000
+Specify the load address of the koala file.
 ### BG Color
 Which color index to use as the background color?
 ### Koala/PRG radio buttons
