@@ -17,7 +17,7 @@ The simplest way to start is to duplicate the included aseprite image, and use t
 But if you want to do it manually:
 
 In the "New Sprite" dialog, set:
-* Resoltion: 160x200
+* Resolution: 160x200
 * Color mode: Indexed
 * Open the `Advanced options` section, set the `Pixel aspect ratio` to `Double-wide Pixels 2:1`
 * Palette: `Presets` (above the palette), and load the C64 palette from there.
