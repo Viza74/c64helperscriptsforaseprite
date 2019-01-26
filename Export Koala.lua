@@ -173,9 +173,7 @@ else
   -- Use the address from the dialog
   local secondhalf = tonumber(string.sub(data.loadaddress, 3,4),16)
   local firsthalf = tonumber(string.sub(data.loadaddress, 1,2),16)
-  print(secondhalf,firsthalf)
   out:write(string.char(secondhalf, firsthalf))
-  -- out:write(string.char(00, 0x60))
 end
 out:write(string.char(table.unpack(bitmap)))
 out:write(string.char(table.unpack(screenRAM)))
