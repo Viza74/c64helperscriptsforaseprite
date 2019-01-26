@@ -86,7 +86,7 @@ Toggles the visibility of the opportunity map on and off.
 
 
 
-## Export HIres
+## Export Hires
 ![](exporthires_sshot.png)
 
 ### Save as
