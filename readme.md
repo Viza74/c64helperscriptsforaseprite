@@ -98,3 +98,11 @@ Specify the load address of the Hi-Eddi file.
 Choose the file format:
 * hed will export the image as pure data .hed file.
 * PRG will use the file "hiresview.prg" in the scripts directory, and appends the hed binary to that. The program is runnable on a C64, and simply displays the appended image.
+
+## Import Koala
+![](importkoala_sshot.png)
+
+Just enter/paste a filename (with full path) in the entry box to load a C64 Koala format file into Aseprite.
+
+Unfortunately due to the limitations currently in Aseprite's script API, I can't provide a file selection dialog. :(
+Another missing function is the ability to set double wide pixel aspect ratio from script, so you also have to do that manually in the `Sprite/Properties...` menu.
